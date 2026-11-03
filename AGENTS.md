@@ -1,0 +1,9 @@
+# Project requirements
+
+- The user re-authorized Flow deck on 2026-10-15 and ToF mission verification on 2026-10-16. Use downward optical flow/range and measured IMU attitude for bounded stabilization, ring passage verification from the lower-edge/ground range profile, and truck deck-entry/near-surface confirmation. Keep front-camera target alignment and relative-speed descent triggering. Do not revive legacy controllers or use simulator pose as sensor data; stale measurements never confirm mission progress.
+- Keep `dynamic_drone.sensor_policy` validation in world/model generation and ROS bridge generation. Reject prohibited sensors/configuration before launch.
+- No supplied scene map, A*, or Gazebo ground-truth pose/depth as a replacement controller input. Ground truth may only be used for clearly separated diagnostic/evaluation records.
+- The legacy Flow/ToF-dependent mission controllers remain blocked. The new sensor assistance is a Gazebo reference, not onboard firmware. Do not silently launch dependent legacy controllers, fabricate sensor freshness, or replace missing marker observations with simulator pose.
+- Preserve ring/landing control logic unless the user explicitly authorizes the necessary changes.
+- User runs simulations and validation. Edit code and provide execution/viewer commands; do not start training, Gazebo, camera windows, or tests without a new explicit request. Explain when a command cannot launch because localization is unavailable.
+- Truck tracking uses the existing flag and downward ToF; do not add landing reference markers. Start descent when relative horizontal speed matches and continue bidirectional tracking. A flag-aligned ToF surface step confirms deck entry. Bounded final descent after flag loss requires that deck evidence; touchdown completion also requires recent near-surface ToF evidence and simulated deck contact. Contact is for verification, not navigation.

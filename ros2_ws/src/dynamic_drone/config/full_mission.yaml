@@ -1,0 +1,58 @@
+# Three-stage rehearsal using known coordinates in Crazyswarm2 SIL.
+# No camera, Gazebo geometry, vehicle contact or competition success claim.
+robot: cf231
+world_frame: world
+takeoff_height: 0.5
+landing_height: 0.04
+max_speed: 0.2
+max_acceleration: 0.3
+position_tolerance: 0.08
+settle_time: 0.5
+hover_time: 0.5
+command_timeout: 2.0
+pose_timeout: 1.0
+startup_timeout: 15.0
+segment_timeout: 25.0
+mission_timeout: 180.0
+min_duration: 2.0
+geofence:
+  x: [-0.5, 2.5]
+  y: [-0.5, 2.5]
+  z: [-0.1, 1.5]
+waypoints: []
+scenario:
+  source: known_coordinates
+  stage1:
+    - name: marker_1
+      position: [0.3, 0.0, 0.5]
+      direction: left
+      yaw_deg: 90.0
+    - name: marker_2
+      position: [0.3, 0.3, 0.5]
+      direction: right
+      yaw_deg: 0.0
+    - name: stage2_entry
+      position: [0.6, 0.3, 0.5]
+      direction: forward
+      yaw_deg: 0.0
+  stage2:
+    obstacle_center: [0.9, 0.3, 0.5]
+    obstacle_radius: 0.12
+    safety_margin: 0.15
+    route:
+      - name: bypass_entry
+        position: [0.6, 0.65, 0.5]
+      - name: bypass_exit
+        position: [1.2, 0.65, 0.5]
+      - name: stage3_entry
+        position: [1.2, 0.3, 0.5]
+  stage3:
+    initial_position: [1.4, 0.3, 0.15]
+    velocity: [0.0, 0.02, 0.0]
+    approach_height: 0.5
+    landing_clearance: 0.04
+    position_tolerance: 0.06
+    velocity_tolerance: 0.04
+    match_time: 1.0
+    descent_speed: 0.05
+    timeout: 40.0

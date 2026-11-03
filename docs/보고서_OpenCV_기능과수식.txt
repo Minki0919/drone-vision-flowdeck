@@ -1,0 +1,71 @@
+OpenCV·Flow Deck 기능 및 수식 요약
+정리일: 2026-11-03 / 현재 코드 기준
+OpenCV 내부 연산은 대표 수식, 센서·제어 연산은 프로젝트 계산식.
+
+[OpenCV]
+1. 흑백 변환 (cvtColor)
+   Y=0.299R+0.587G+0.114B
+2. ArUco 마커 인식 (ArucoDetector.detectMarkers)
+   d_H(a,b)=Σ[a_i≠b_i]; 유효 사전 코드의 ID와 4개 모서리 검출
+3. 모서리 정밀 보정 (CORNER_REFINE_SUBPIX)
+   q=(Σg_i g_iᵀ)^(-1)Σ(g_i g_iᵀ p_i), g_i=∇I(p_i)
+4. 마커 위치·자세 추정 (solvePnPGeneric / solvePnPRansac)
+   s[u,v,1]ᵀ=K(RP+t); min Σ||p_i−π(K,dist,RP_i+t)||²
+5. 자세 정밀 보정 (solvePnPRefineLM)
+   δ=−(JᵀJ+λI)^(-1)Jᵀr, θ_new=θ+δ  (LM 대표식)
+6. 회전변환 (Rodrigues)
+   R=I+sinθ[k]×+(1−cosθ)[k]×², θ=||r||, k=r/θ; θ=0이면 R=I
+7. 재투영 오차 (projectPoints)
+   E=sqrt(Σ||p̂_i−p_i||²/N); 단일 마커 후보 E≤1.5 px
+8. 링 경계 추출 (Canny)
+   G=|Ix|+|Iy|; 이중 임계값 40,100
+9. 윤곽 면적 (findContours / contourArea)
+   A=0.5|Σ(x_i y_(i+1)−x_(i+1)y_i)|; 점유율=A/(W·H)
+10. 링 타원 적합 (fitEllipse)
+    (x'/a)²+(y'/b)²=1; a,b는 반축 길이
+    e=|sqrt((x'/a)²+(y'/b)²)−1|; quantile_0.7(e)≤0.09
+    박스 일치도 IoU=|B_ellipse∩B_YOLO|/|B_ellipse∪B_YOLO|≥0.45
+11. Shi–Tomasi 특징점 (goodFeaturesToTrack)
+    M=Σ[[Ix²,IxIy],[IxIy,Iy²]]; S=min(λ1(M),λ2(M))
+12. Lucas–Kanade 광류 (calcOpticalFlowPyrLK)
+    Ix·du+Iy·dv+It=0; [du,dv]ᵀ=−(AᵀA)^(-1)Aᵀb
+    전진·역방향 검증: ||p_back−p_original||<0.75 px
+13. 링 이동·확대 추정 (estimateAffinePartial2D + RANSAC)
+    p_new=sR(θ)p_old+t; s=sqrt(T00²+T10²), θ=atan2(T10,T00)
+14. 링 경계 거리 (distanceTransform, DIST_L2, 3)
+    D(p)≈min_(q∈경계)||p−q||₂; D≤2 px인 추적점 비율≥0.70
+15. 깊이 색상 표시 (applyColorMap, COLORMAP_TURBO)
+    c=uint8(255(1−clip(d,0,8)/8)); color=TURBO(c)
+
+[Flow Deck 센서 계산]
+16. 하방 거리 기울기 보정
+    h=d·R22; 유효 거리 0.02≤d<2.00 m; R22≥cos20°
+17. 표면 점 복원
+    q=K^(-1)[u,v,1]ᵀ; n=−C Rᵀ[0,0,1]ᵀ; Q=(d n_z/(qᵀn))q
+18. 회전 보정 광류 속도
+    ΔR=R_newᵀR_old
+    Δx=Cᵀ(CΔRCᵀQ_old−Q_new)+(ΔR−I)b; v_i=Δx_i/Δt
+    인라이어: ||v_i−median(v_i)||<0.12 m/s
+    v=median(v_inliers); α=Δt/(0.10+Δt); v_f,new=v_f,old+α(v−v_f,old)
+19. 정지 중 수평 보정
+    Δv_xy=clip(−0.25v_f,xy,−0.05,+0.05) m/s
+20. 탐색 높이 유지
+    v_z=clip(0.8(h_ref−h)−0.10v_f,z,−0.06,+0.06) m/s
+    속도 무효 시 감쇠항은 0
+21. 착지 감속 (하강 단계·깃발 관측 유효·d<0.28 m)
+    v_z=max(v_z,−0.04) m/s
+
+[자체 영상 중심 PID]
+22. 각도 오차 및 PID
+    e=[−atan((u−cx)/fx),−atan((v−cy)/fy)]ᵀ
+    e_f,new=e_f,old+Δt/(0.10+Δt)(e−e_f,old)
+    D_raw=(e_f,new−e_f,old)/Δt
+    D_new=D_old+Δt/(0.15+Δt)(D_raw−D_old)
+    I_candidate=clip(I_old+e_f,newΔt,−0.3,+0.3)
+    u_cmd=clip(Kp e_f,new+Ki I+Kd D_new,u_min,u_max)
+    출력 포화를 심화하는 적분은 갱신하지 않음.
+
+기호: K=카메라 내부행렬, fx/fy=초점거리, cx/cy=주점, Δt=프레임 시간차.
+Flow 수식의 R=기체→월드 IMU 회전, C=기체→하방 카메라 회전,
+b=[0,0,−0.020]ᵀ m=센서 위치 오프셋, d=하방 표면 거리.
+YOLO·학습 깊이 모델은 OpenCV 알고리즘과 별개이며 Flow Deck은 Gazebo 모의 구현.

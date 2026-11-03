@@ -1,0 +1,116 @@
+# ArUco navigation, image-detected wall bypass, ordered visual gate crossings,
+# then visual velocity matching and moving-truck landing.
+model_name: crazyflie_2_1
+# Model origin is at the bottom of the official body's collision box (feet).
+start_position: [0.0, 0.0, 0.022]
+start_position_tolerance: 0.08
+start_height_tolerance: 0.03
+flight_height: 1.5
+# Camera translation in model/odometry coordinates, including body-link Z.
+front_camera_offset: [0.035, 0.0, 0.042425]
+max_speed: 0.9
+gain: 0.9
+position_tolerance: 0.12
+settle_time: 0.6
+visual_navigation:
+  marker_size: 0.5
+  observation_timeout: 0.4
+  required_frames: 3
+  acquire_timeout: 15.0
+  navigation_timeout: 15.0
+  lateral_distance: 1.3
+  hover_time: 1.5
+  forward_speed: 0.3
+  min_forward_distance: 0.7
+  wall_trigger_distance: 2.7
+  markers:
+    - {id: 1, position: [2.5, 0.0, 1.5], goal_offset: [-1.0, 0.0, 0.0], direction: left}
+    - {id: 2, position: [7.3, 2.6, 1.5], goal_offset: [-1.0, 0.0, 0.0], direction: right}
+obstacle_avoidance:
+  width: 1.4
+  thickness: 0.6
+  clearance: 0.6
+  exit_margin: 0.6
+  observation_timeout: 0.4
+  required_frames: 3
+  acquire_timeout: 8.0
+  obstacles:
+    - {position: [4.5, 1.3, 1.0], side: 1}
+    - {position: [9.0, 1.3, 1.0], side: -1}
+vehicle_speed: 0.5
+gate:
+  # 45 inch diagonal 16:9 display dimensions, interpreted as inner opening.
+  width: 0.9962
+  height: 0.5604
+  frame_thickness: 0.06
+  centers:
+    - [13.0, 0.5, 1.5]
+    - [17.0, 1.3, 1.5]
+    - [21.0, 0.5, 1.5]
+    - [25.0, 1.3, 1.5]
+  count: 4
+  max_acquire_distance: 5.0
+  spacing_min: 3.0
+  spacing_max: 5.0
+  max_center_change: 0.4
+  observation_timeout: 0.3
+  required_frames: 3
+  acquire_timeout: 15.0
+  approach_distance: 2.0
+  exit_distance: 0.8
+  body_margin: 0.10
+truck_start: [28.3, 1.3, 0.3]
+flag_follow:
+  marker_id: 23
+  marker_size: 0.4
+  # Marker center relative to vehicle model origin.
+  marker_offset: [0.65, 0.0, 1.2]
+  distance: 1.6
+  duration: 20.0
+  gain: 0.65
+  max_speed: 0.85
+  tolerance: 0.18
+  observation_timeout: 0.4
+  lost_timeout: 3.0
+  required_frames: 3
+truck_landing:
+  acquisition_marker_id: 25
+  acquisition_marker_size: 0.24
+  acquisition_marker_offset: [-0.35, 0.3, 0.307]
+  fine_marker_switch_height: 0.8
+  marker_id: 24
+  marker_size: 0.08
+  marker_offset: [-0.35, 0.0, 0.307]
+  # Known flat deck height on this level-road world; not live vehicle pose.
+  marker_world_height: 0.607
+  # Virtual forward boom mount: keep the downward view clear of own rotors.
+  camera_offset: [0.18, 0.0, 0.097425]
+  marker_ahead_of_camera: 0.015
+  approach_height: 1.1
+  alignment_tolerance: 0.04
+  final_alignment_tolerance: 0.015
+  max_blind_tracking_time: 1.0
+  align_time: 1.0
+  contact_hold: 2.0
+  ride_verify_time: 3.0
+  contact_horizontal_tolerance: 0.025
+  contact_speed_tolerance: 0.02
+  contact_vertical_speed_tolerance: 0.03
+  final_descent_speed: 0.03
+  max_prediction_time: 12.0
+  press_depth: 0.01
+  observation_timeout: 0.4
+  lost_timeout: 3.0
+  required_frames: 3
+roof_height: 0.6
+landing_origin_offset: 0.0
+landing_press_depth: 0.003
+abort_landed_height: 0.025
+descent_speed: 0.08
+match_time: 1.0
+relative_speed_tolerance: 0.04
+stage_timeout: 100.0
+pose_timeout: 2.0
+# Reserve enough straight runway for speed matching, slow descent and the
+# motor-off ride verification; do not hit the boundary during landing.
+geofence: [-2.0, 150.0, -3.0, 8.0, -0.2, 4.0]

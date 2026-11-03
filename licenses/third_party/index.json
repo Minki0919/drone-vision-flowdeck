@@ -1,0 +1,167 @@
+{
+  "captured_on": "2026-11-03",
+  "source": "Locally installed distributions; no library code or environment copied",
+  "files": [
+    {
+      "package": "PyYAML",
+      "version": "6.0.3",
+      "source_distribution_path": "pyyaml-6.0.3.dist-info/licenses/LICENSE",
+      "saved_as": "licenses/third_party/PyYAML/licenses/LICENSE",
+      "sha256": "8d3928f9dc4490fd635707cb88eb26bd764102a7282954307d3e5167a577e8a4"
+    },
+    {
+      "package": "torchvision",
+      "version": "0.25.0+cu128",
+      "source_distribution_path": "torchvision-0.25.0+cu128.dist-info/LICENSE",
+      "saved_as": "licenses/third_party/torchvision/LICENSE",
+      "sha256": "6502f676851cfe25f8af75531dfb32375b7325b73c37e7b43741fa422893e71d"
+    },
+    {
+      "package": "torch",
+      "version": "2.10.0+cu128",
+      "source_distribution_path": "torch-2.10.0+cu128.dist-info/licenses/LICENSE",
+      "saved_as": "licenses/third_party/torch/licenses/LICENSE",
+      "sha256": "2e311cbf8c7646e764a54621ab15663bbfcfeb5bb94f1d634d79adfd49ae3191"
+    },
+    {
+      "package": "torch",
+      "version": "2.10.0+cu128",
+      "source_distribution_path": "torch-2.10.0+cu128.dist-info/licenses/NOTICE",
+      "saved_as": "licenses/third_party/torch/licenses/NOTICE",
+      "sha256": "c2cc7bf0caec7652c2b460a8a470bea1677f241e4ab8e431df34cf17f5a9fec0"
+    },
+    {
+      "package": "opencv-python",
+      "version": "5.0.0.93",
+      "source_distribution_path": "opencv_python-5.0.0.93.dist-info/LICENSE-3RD-PARTY.txt",
+      "saved_as": "licenses/third_party/opencv-python/LICENSE-3RD-PARTY.txt",
+      "sha256": "2537f5653345db7231ff12f307bcfa4c89807d45ed1c4bb8ebfb6f26f61b160a"
+    },
+    {
+      "package": "opencv-python",
+      "version": "5.0.0.93",
+      "source_distribution_path": "opencv_python-5.0.0.93.dist-info/LICENSE.txt",
+      "saved_as": "licenses/third_party/opencv-python/LICENSE.txt",
+      "sha256": "09d719058e782ac7bc71ba21c944e1136cde2bb957c0e888121f0218d6b5f02c"
+    },
+    {
+      "package": "ultralytics",
+      "version": "8.4.174",
+      "source_distribution_path": "ultralytics-8.4.174.dist-info/licenses/LICENSE",
+      "saved_as": "licenses/third_party/ultralytics/licenses/LICENSE",
+      "sha256": "0d96a4ff68ad6d4b6f1f30f713b18d5184912ba8dd389f86aa7710db079abcb0"
+    },
+    {
+      "package": "numpy",
+      "version": "2.5.2",
+      "source_distribution_path": "numpy-2.5.2.dist-info/licenses/LICENSE.txt",
+      "saved_as": "licenses/third_party/numpy/licenses/LICENSE.txt",
+      "sha256": "4860083caa0de2ac3292ca98bd074bd8f45d8b32624e37b1e70a240bff61e488"
+    },
+    {
+      "package": "numpy",
+      "version": "2.5.2",
+      "source_distribution_path": "numpy-2.5.2.dist-info/licenses/numpy/_core/include/numpy/libdivide/LICENSE.txt",
+      "saved_as": "licenses/third_party/numpy/licenses/numpy/_core/include/numpy/libdivide/LICENSE.txt",
+      "sha256": "fbc539f47d0cf83bc61378080fb873d5c14630126cacbfe754035c3926daa5ec"
+    },
+    {
+      "package": "numpy",
+      "version": "2.5.2",
+      "source_distribution_path": "numpy-2.5.2.dist-info/licenses/numpy/_core/src/common/pythoncapi-compat/COPYING",
+      "saved_as": "licenses/third_party/numpy/licenses/numpy/_core/src/common/pythoncapi-compat/COPYING",
+      "sha256": "3f2c1ffa76383a55ae0aac01c9737cd70050dff63e1f026694fbe9d662573c98"
+    },
+    {
+      "package": "numpy",
+      "version": "2.5.2",
+      "source_distribution_path": "numpy-2.5.2.dist-info/licenses/numpy/_core/src/highway/LICENSE",
+      "saved_as": "licenses/third_party/numpy/licenses/numpy/_core/src/highway/LICENSE",
+      "sha256": "e340270d4f64384569a91d546acb5b094d69ce47f0c015db77abb74dc6f815af"
+    },
+    {
+      "package": "numpy",
+      "version": "2.5.2",
+      "source_distribution_path": "numpy-2.5.2.dist-info/licenses/numpy/_core/src/npysort/x86-simd-sort/LICENSE.md",
+      "saved_as": "licenses/third_party/numpy/licenses/numpy/_core/src/npysort/x86-simd-sort/LICENSE.md",
+      "sha256": "211e7d737d6179a08f791ebb0a99897ce7cd2457410c542876d125576edfe910"
+    },
+    {
+      "package": "numpy",
+      "version": "2.5.2",
+      "source_distribution_path": "numpy-2.5.2.dist-info/licenses/numpy/_core/src/umath/svml/LICENSE",
+      "saved_as": "licenses/third_party/numpy/licenses/numpy/_core/src/umath/svml/LICENSE",
+      "sha256": "c17011467b4fe6e20fbfbeda4df09e58c2bca5480a063e55735a4000a379aad9"
+    },
+    {
+      "package": "numpy",
+      "version": "2.5.2",
+      "source_distribution_path": "numpy-2.5.2.dist-info/licenses/numpy/fft/pocketfft/LICENSE.md",
+      "saved_as": "licenses/third_party/numpy/licenses/numpy/fft/pocketfft/LICENSE.md",
+      "sha256": "a85ca13fdf90160b64a0698215868c13b74d835ad0a4e2ba44713b8c5058a056"
+    },
+    {
+      "package": "numpy",
+      "version": "2.5.2",
+      "source_distribution_path": "numpy-2.5.2.dist-info/licenses/numpy/linalg/lapack_lite/LICENSE.txt",
+      "saved_as": "licenses/third_party/numpy/licenses/numpy/linalg/lapack_lite/LICENSE.txt",
+      "sha256": "a14cc25e10d40a3aa705b7de2fb764a6535d8ee9b2db4e1724900585457dfd55"
+    },
+    {
+      "package": "numpy",
+      "version": "2.5.2",
+      "source_distribution_path": "numpy-2.5.2.dist-info/licenses/numpy/ma/LICENSE",
+      "saved_as": "licenses/third_party/numpy/licenses/numpy/ma/LICENSE",
+      "sha256": "05f3b88351988ecfad10abe92c0c50e5875c6452d5009a0084cc291551ffcca6"
+    },
+    {
+      "package": "numpy",
+      "version": "2.5.2",
+      "source_distribution_path": "numpy-2.5.2.dist-info/licenses/numpy/random/LICENSE.md",
+      "saved_as": "licenses/third_party/numpy/licenses/numpy/random/LICENSE.md",
+      "sha256": "103166b62b80443afb9eb3488e052ea06be0cff566b908f199e561fde49af19f"
+    },
+    {
+      "package": "numpy",
+      "version": "2.5.2",
+      "source_distribution_path": "numpy-2.5.2.dist-info/licenses/numpy/random/src/distributions/LICENSE.md",
+      "saved_as": "licenses/third_party/numpy/licenses/numpy/random/src/distributions/LICENSE.md",
+      "sha256": "469778be8f33d54e1bcaab28c281cc472916d2d273f835e55bc487d30503face"
+    },
+    {
+      "package": "numpy",
+      "version": "2.5.2",
+      "source_distribution_path": "numpy-2.5.2.dist-info/licenses/numpy/random/src/mt19937/LICENSE.md",
+      "saved_as": "licenses/third_party/numpy/licenses/numpy/random/src/mt19937/LICENSE.md",
+      "sha256": "0e111337b25494a773106695f0e799f642b8567aaacca4f116a74a8177179156"
+    },
+    {
+      "package": "numpy",
+      "version": "2.5.2",
+      "source_distribution_path": "numpy-2.5.2.dist-info/licenses/numpy/random/src/pcg64/LICENSE.md",
+      "saved_as": "licenses/third_party/numpy/licenses/numpy/random/src/pcg64/LICENSE.md",
+      "sha256": "e7d4f4fb20358f314210a892ae17351e04993813646f697ec387385ca2a36918"
+    },
+    {
+      "package": "numpy",
+      "version": "2.5.2",
+      "source_distribution_path": "numpy-2.5.2.dist-info/licenses/numpy/random/src/philox/LICENSE.md",
+      "saved_as": "licenses/third_party/numpy/licenses/numpy/random/src/philox/LICENSE.md",
+      "sha256": "6f5828a57223d4cc7f8ea505a2623e7b978b242752c1515e355f46ba2cec1800"
+    },
+    {
+      "package": "numpy",
+      "version": "2.5.2",
+      "source_distribution_path": "numpy-2.5.2.dist-info/licenses/numpy/random/src/sfc64/LICENSE.md",
+      "saved_as": "licenses/third_party/numpy/licenses/numpy/random/src/sfc64/LICENSE.md",
+      "sha256": "9d4098846018319cd68e228ee6220361787f73bccbf00237a85e4fc9621b998f"
+    },
+    {
+      "package": "numpy",
+      "version": "2.5.2",
+      "source_distribution_path": "numpy-2.5.2.dist-info/licenses/numpy/random/src/splitmix64/LICENSE.md",
+      "saved_as": "licenses/third_party/numpy/licenses/numpy/random/src/splitmix64/LICENSE.md",
+      "sha256": "268b0ca06759d31ea3ca68dd35f20e877916e927b1c2a835e4592a3c4354b1f9"
+    }
+  ]
+}

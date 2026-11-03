@@ -1,0 +1,248 @@
+<?xml version='1.0' encoding='utf-8'?>
+<sdf version="1.9">
+  <!--Adapted from Bitcraze crazyflie-simulation, MIT, Copyright (c) 2024 Bitcraze; see README.md-->
+  <model name="crazyflie_2_1">
+    <link name="base_link">
+      <pose> 0 0 17.425E-3 0 0 0</pose>
+      <inertial>
+        <mass>0.0258</mass>
+        <inertia>
+          <ixx>16.571710E-06</ixx>
+          <iyy>16.655602E-06</iyy>
+          <izz>29.261652E-06</izz>
+          <ixy>0.830806E-06</ixy>
+          <ixz>0.718277E-06</ixz>
+          <iyz>1.800197E-06</iyz>
+        </inertia>
+      </inertial>
+      <collision name="body_collision">
+        <geometry>
+          <box>
+            <size>0.10 0.10 34.850E-3</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="body_visual">
+        <geometry>
+          <mesh>
+            <uri>/home/kminki/Desktop/4종드론/vendor/crazyflie-simulation/meshes/collada_files/cf2_assembly.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <sensor name="mission_contact" type="contact">
+        <always_on>true</always_on>
+        <update_rate>50</update_rate>
+        <contact>
+          <collision>body_collision</collision>
+        </contact>
+      </sensor>
+    </link>
+    <link name="rotor_0">
+      <pose>0.031 -0.031 0.021 0 0 0</pose>
+      <inertial>
+        <mass>0.0008</mass>
+        <inertia>
+          <ixx>8.33333E-09</ixx>
+          <iyy>1.08333E-07</iyy>
+          <izz>1.13333E-07</izz>
+        </inertia>
+      </inertial>
+      <visual name="crazyflie/m1_visual">
+        <geometry>
+          <mesh>
+            <uri>/home/kminki/Desktop/4종드론/vendor/crazyflie-simulation/meshes/collada_files/ccw_prop.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <link name="rotor_1">
+      <pose>-0.031 -0.031 0.021 0 0 0</pose>
+      <inertial>
+        <mass>0.0008</mass>
+        <inertia>
+          <ixx>8.33333E-09</ixx>
+          <iyy>1.08333E-07</iyy>
+          <izz>1.13333E-07</izz>
+        </inertia>
+      </inertial>
+      <visual name="crazyflie/m2_visual">
+        <geometry>
+          <mesh>
+            <uri>/home/kminki/Desktop/4종드론/vendor/crazyflie-simulation/meshes/collada_files/cw_prop.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <link name="rotor_2">
+      <pose>-0.031 0.031 0.021 0 0 0</pose>
+      <inertial>
+        <mass>0.0008</mass>
+        <inertia>
+          <ixx>8.33333E-09</ixx>
+          <iyy>1.08333E-07</iyy>
+          <izz>1.13333E-07</izz>
+        </inertia>
+      </inertial>
+      <visual name="crazyflie/m3_visual">
+        <geometry>
+          <mesh>
+            <uri>/home/kminki/Desktop/4종드론/vendor/crazyflie-simulation/meshes/collada_files/ccw_prop.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <link name="rotor_3">
+      <pose>0.031 0.031 0.021 0 0 0</pose>
+      <inertial>
+        <mass>0.0008</mass>
+        <inertia>
+          <ixx>8.33333E-09</ixx>
+          <iyy>1.08333E-07</iyy>
+          <izz>1.13333E-07</izz>
+        </inertia>
+      </inertial>
+      <visual name="crazyflie/m4_visual">
+        <geometry>
+          <mesh>
+            <uri>/home/kminki/Desktop/4종드론/vendor/crazyflie-simulation/meshes/collada_files/cw_prop.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name="rotor_0_joint" type="revolute">
+      <child>rotor_0</child>
+      <parent>base_link</parent>
+      <axis>
+        <xyz>0 0 1</xyz>
+      </axis>
+    </joint>
+    <joint name="rotor_1_joint" type="revolute">
+      <child>rotor_1</child>
+      <parent>base_link</parent>
+      <axis>
+        <xyz>0 0 1</xyz>
+      </axis>
+    </joint>
+    <joint name="rotor_2_joint" type="revolute">
+      <child>rotor_2</child>
+      <parent>base_link</parent>
+      <axis>
+        <xyz>0 0 1</xyz>
+      </axis>
+    </joint>
+    <joint name="rotor_3_joint" type="revolute">
+      <child>rotor_3</child>
+      <parent>base_link</parent>
+      <axis>
+        <xyz>0 0 1</xyz>
+      </axis>
+    </joint>
+    <plugin filename="gz-sim-multicopter-motor-model-system" name="gz::sim::systems::MulticopterMotorModel">
+      <robotNamespace>crazyflie_2_1</robotNamespace>
+      <jointName>rotor_0_joint</jointName>
+      <linkName>rotor_0</linkName>
+      <turningDirection>ccw</turningDirection>
+      <maxRotVelocity>2618</maxRotVelocity>
+      <motorConstant>1.28192e-08</motorConstant>
+      <momentConstant>0.005964552</momentConstant>
+      <rotorDragCoefficient>1e-7</rotorDragCoefficient>
+      <rollingMomentCoefficient>0</rollingMomentCoefficient>
+      <rotorVelocitySlowdownSim>20</rotorVelocitySlowdownSim>
+      <actuator_number>0</actuator_number>
+      <motorType>velocity</motorType>
+      <timeConstantUp>0.0125</timeConstantUp>
+      <timeConstantDown>0.025</timeConstantDown>
+    </plugin>
+    <plugin filename="gz-sim-multicopter-motor-model-system" name="gz::sim::systems::MulticopterMotorModel">
+      <robotNamespace>crazyflie_2_1</robotNamespace>
+      <jointName>rotor_1_joint</jointName>
+      <linkName>rotor_1</linkName>
+      <turningDirection>cw</turningDirection>
+      <maxRotVelocity>2618</maxRotVelocity>
+      <motorConstant>1.28192e-08</motorConstant>
+      <momentConstant>0.005964552</momentConstant>
+      <rotorDragCoefficient>1e-7</rotorDragCoefficient>
+      <rollingMomentCoefficient>0</rollingMomentCoefficient>
+      <rotorVelocitySlowdownSim>20</rotorVelocitySlowdownSim>
+      <actuator_number>1</actuator_number>
+      <motorType>velocity</motorType>
+      <timeConstantUp>0.0125</timeConstantUp>
+      <timeConstantDown>0.025</timeConstantDown>
+    </plugin>
+    <plugin filename="gz-sim-multicopter-motor-model-system" name="gz::sim::systems::MulticopterMotorModel">
+      <robotNamespace>crazyflie_2_1</robotNamespace>
+      <jointName>rotor_2_joint</jointName>
+      <linkName>rotor_2</linkName>
+      <turningDirection>ccw</turningDirection>
+      <maxRotVelocity>2618</maxRotVelocity>
+      <motorConstant>1.28192e-08</motorConstant>
+      <momentConstant>0.005964552</momentConstant>
+      <rotorDragCoefficient>1e-7</rotorDragCoefficient>
+      <rollingMomentCoefficient>0</rollingMomentCoefficient>
+      <rotorVelocitySlowdownSim>20</rotorVelocitySlowdownSim>
+      <actuator_number>2</actuator_number>
+      <motorType>velocity</motorType>
+      <timeConstantUp>0.0125</timeConstantUp>
+      <timeConstantDown>0.025</timeConstantDown>
+    </plugin>
+    <plugin filename="gz-sim-multicopter-motor-model-system" name="gz::sim::systems::MulticopterMotorModel">
+      <robotNamespace>crazyflie_2_1</robotNamespace>
+      <jointName>rotor_3_joint</jointName>
+      <linkName>rotor_3</linkName>
+      <turningDirection>cw</turningDirection>
+      <maxRotVelocity>2618</maxRotVelocity>
+      <motorConstant>1.28192e-08</motorConstant>
+      <momentConstant>0.005964552</momentConstant>
+      <rotorDragCoefficient>1e-7</rotorDragCoefficient>
+      <rollingMomentCoefficient>0</rollingMomentCoefficient>
+      <rotorVelocitySlowdownSim>20</rotorVelocitySlowdownSim>
+      <actuator_number>3</actuator_number>
+      <motorType>velocity</motorType>
+      <timeConstantUp>0.0125</timeConstantUp>
+      <timeConstantDown>0.025</timeConstantDown>
+    </plugin>
+    <plugin filename="gz-sim-multicopter-control-system" name="gz::sim::systems::MulticopterVelocityControl">
+      <robotNamespace>crazyflie_2_1</robotNamespace>
+      <commandSubTopic>gazebo/command/twist</commandSubTopic>
+      <enableSubTopic>enable</enableSubTopic>
+      <comLinkName>base_link</comLinkName>
+      <velocityGain>0.12 0.12 0.18</velocityGain>
+      <attitudeGain>0.001 0.001 0.0005</attitudeGain>
+      <angularRateGain>0.0002 0.0002 0.0001</angularRateGain>
+      <rotorConfiguration>
+        <rotor>
+          <jointName>rotor_0_joint</jointName>
+          <forceConstant>1.28192e-08</forceConstant>
+          <momentConstant>0.005964552</momentConstant>
+          <direction>1</direction>
+        </rotor>
+        <rotor>
+          <jointName>rotor_1_joint</jointName>
+          <forceConstant>1.28192e-08</forceConstant>
+          <momentConstant>0.005964552</momentConstant>
+          <direction>-1</direction>
+        </rotor>
+        <rotor>
+          <jointName>rotor_2_joint</jointName>
+          <forceConstant>1.28192e-08</forceConstant>
+          <momentConstant>0.005964552</momentConstant>
+          <direction>1</direction>
+        </rotor>
+        <rotor>
+          <jointName>rotor_3_joint</jointName>
+          <forceConstant>1.28192e-08</forceConstant>
+          <momentConstant>0.005964552</momentConstant>
+          <direction>-1</direction>
+        </rotor>
+      </rotorConfiguration>
+      <maximumLinearAcceleration>1 1 1</maximumLinearAcceleration>
+      <maximumLinearVelocity>1.0 1.0 0.4</maximumLinearVelocity>
+    </plugin>
+    <plugin filename="gz-sim-odometry-publisher-system" name="gz::sim::systems::OdometryPublisher">
+      <dimensions>3</dimensions>
+      <odom_frame>world</odom_frame>
+      <odom_publish_frequency>50</odom_publish_frequency>
+    </plugin>
+    <pose>0.0 0.0 0.022 0 0 0</pose>
+  </model>
+</sdf>

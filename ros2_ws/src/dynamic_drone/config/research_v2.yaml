@@ -1,0 +1,23 @@
+name: research_v2
+mission_lighting_mode: bright_fixed
+# Temporary mission test lighting; set to randomized for varied-light tests.
+mission_bright_ambient: 0.65
+mission_bright_sun_diffuse: 0.90
+mission_bright_sun_direction: [0.25, -0.15, -0.956556]
+base_profile: varied_v1
+wall_width: [1.1, 1.5]
+wall_thickness: [0.30, 0.60]
+wall_height: [1.9, 2.4]
+obstacle_types: [box, cylinder, panels]
+ring_diameter: [0.95, 1.15]
+room_styles: [open, corridor, warehouse]
+ambient: [0.22, 0.55]
+sun_diffuse: [0.45, 1.0]
+sun_azimuth_deg: [-180, 180]
+sun_elevation_deg: [25, 80]
+camera_delay_seconds: [0.0, 0.10]
+camera_dropout_probability: [0.0, 0.02]
+camera_noise_std: [0.0, 2.0]
+occlusion_fraction: [0.0, 0.08]
+occlusion_probability: [0.0, 0.05]
+# A uniform, per-episode sensor stress profile; not a hardware calibration.

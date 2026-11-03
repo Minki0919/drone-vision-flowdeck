@@ -1,0 +1,18 @@
+name: varied_v1
+# Geometry variations preserve left/right order, 45-inch openings and 0.5 m/s truck.
+start_y: [-0.20, 0.20]
+marker1_x: [2.40, 2.80]
+lateral_distance: [1.18, 1.42]
+wall1_ahead: [1.90, 2.10]
+marker2_after_wall1: [2.60, 2.90]
+wall2_after_marker2: [1.65, 1.85]
+first_gate_after_wall2: [3.90, 4.10]
+gate_spacing: [4.00, 4.60]
+gate_low_y: [0.40, 0.65]
+gate_zigzag: [0.65, 0.95]
+gate_height_delta: [-0.05, 0.05]
+truck_after_gate4: [3.10, 3.50]
+truck_y_delta: [-0.15, 0.15]
+ambient: [0.35, 0.50]
+sun_diffuse: [0.75, 0.95]
+ground_gray: [0.55, 0.80]

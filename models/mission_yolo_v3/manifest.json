@@ -1,0 +1,105 @@
+{
+  "version": "ring_v2_diverse_20261014",
+  "source": "/home/kminki/Desktop/YOLO_링V2_Ubuntu_Gazebo실행_전체자료_20261015./YOLO_ring_v2/weights/best.pt",
+  "sha256": "a68ce7070a34e46e952f7a80f6afebc172a29dd1a61944c5b4a654f549674e47",
+  "classes": [
+    "up",
+    "down",
+    "left",
+    "right",
+    "ring"
+  ],
+  "combined": true,
+  "loaded_networks": [
+    "combined"
+  ],
+  "training_started": false,
+  "source_already_trained": true,
+  "inference": {
+    "imgsz": 320,
+    "confidence": 0.4,
+    "interval_seconds": 0.1,
+    "clahe_retry": false,
+    "clipped_box_filter": false,
+    "ring_curve_support": true,
+    "ring_curve_overlap_min": 0.45,
+    "ring_curve_radial_error_quantile": 0.7,
+    "ring_curve_radial_error_max": 0.09,
+    "partially_occluded_arcs_checked": true
+  },
+  "compatibility": {
+    "actual_model_names_verified": true,
+    "saved_front_frames_inferred": 5,
+    "device": "cpu",
+    "inference_output": "class_name_confidence_xyxy_capture_time",
+    "mission_control_changed": false,
+    "gazebo_flight_verified": false,
+    "performance_improvement_verified": false
+  },
+  "additional_dataset": {
+    "path": "/home/kminki/Desktop/ring_only./ring_only",
+    "names": {
+      "0": "ring"
+    },
+    "train_images": 1600,
+    "validation_images": 400,
+    "train_boxes": 3087,
+    "validation_boxes": 822,
+    "train_empty_labels": 172,
+    "validation_empty_labels": 30,
+    "label_errors": 0,
+    "finetuning_performed": false,
+    "ring_class_mapping_to_current_model": {
+      "0": 4
+    },
+    "yaml_path_status": "contains_Windows_path_not_used_by_runtime"
+  },
+  "rollback": {
+    "path": "/home/kminki/Desktop/YOLO_링V2_Ubuntu_Gazebo실행_전체자료_20261015./YOLO_ring_v2/weights/baseline_v1.pt",
+    "sha256": "ca746f2c2d71db5f1aca793ae14cdcf08ff90371cff9e00a6e674ed0686322b2",
+    "checksum_matched_previous_active_model": true
+  },
+  "wall_false_positive_fix": {
+    "date": "2026-10-16",
+    "weights_retrained": false,
+    "tuning_sample_images": 128,
+    "positive_images": 64,
+    "negative_images": 64,
+    "iou_threshold": 0.5,
+    "old": {
+      "tp": 63,
+      "fp": 19,
+      "fn": 1
+    },
+    "corrected": {
+      "tp": 59,
+      "fp": 0,
+      "fn": 5
+    },
+    "sampling_seed": 20261016,
+    "independent_final_performance_verified": false,
+    "limitations": "Heavily occluded rings can still be missed; no Gazebo flight validation.",
+    "actual_saved_front_cases_passed": 3,
+    "offline_regression_cases": 96
+  },
+  "temporal_tracking": {
+    "owner": "MissionObserver_front_camera",
+    "date": "2026-10-16",
+    "max_seconds_since_yolo_confirmation": 0.6,
+    "max_image_pair_gap_seconds": 0.15,
+    "missing_measurement_hold_seconds": 0.2,
+    "fresh_yolo_box_weight": 0.35,
+    "source": "verified_rim_optical_flow_with_current_edge_support",
+    "largest_ring_initial_acquisition": true,
+    "smaller_rear_ring_replacement_blocked": true,
+    "fresh_larger_ring_area_ratio": 1.5,
+    "new_target_curve_filter_unchanged": true,
+    "weights_retrained": false,
+    "offline_regression_cases": 114,
+    "saved_still_images_with_synthetic_motion": 8,
+    "dropout_seconds": 0.5,
+    "tracked_frames": 80,
+    "max_motion_center_error_px": 0.422,
+    "gazebo_flight_after_change": false
+  }
+}

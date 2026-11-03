@@ -1,0 +1,42 @@
+# Local environments, credentials and editor state
+.env
+.env.*
+!.env.example
+.venv/
+.venv-*/
+venv/
+.aws/
+.codex/
+.agents/
+.vscode/
+.idea/
+*.pem
+*.key
+
+# Python, ROS and Gazebo generated files
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+build/
+install/
+log/
+.logs/
+.cache/
+.gz/
+*.log
+*.swp
+*~
+.DS_Store
+
+# Keep the small runtime depth model and its training metadata only.
+/DATA/*
+!/DATA/sensor_only_20261011_050229/
+/DATA/sensor_only_20261011_050229/*
+!/DATA/sensor_only_20261011_050229/depth/
+/DATA/sensor_only_20261011_050229/depth/*
+!/DATA/sensor_only_20261011_050229/depth/depth.pt
+!/DATA/sensor_only_20261011_050229/depth/training.json
+!/DATA/sensor_only_20261011_050229/depth/epochs.jsonl

@@ -1,0 +1,12 @@
+opencv_vision:
+  ros__parameters:
+    image_topic: /mission/drone/camera/image
+    min_panel_area: 100.0
+    max_panel_area_ratio: 0.65
+    max_image_age: 0.5
+    vote_window: 5
+    vote_required: 4
+    vote_max_gap: 0.4
+    # Explicit collection only by default. Positive seconds enable bounded sampling.
+    record_interval: 0.0
+    show_window: false

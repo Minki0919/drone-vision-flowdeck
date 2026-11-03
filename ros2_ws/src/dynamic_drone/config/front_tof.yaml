@@ -1,0 +1,14 @@
+# Generic simulation proxy: replace these limits/noise/mount with measured hardware data.
+sensor_model: generic_downward_distance_proxy
+mount_offset: [0.0, 0.0, 0.003]
+min_range: 0.01
+max_range: 4.0
+update_rate: 20
+noise_std: 0.001
+observation_timeout: 0.15
+landing_offset: [-0.50, 0.0, 0.30]
+surface_consistency_tolerance: 0.08
+prediction_timeout: 14.0
+near_clip_anchor_timeout: 3.5
+near_clip_clearance: 0.035
+contact_clearance_tolerance: 0.03

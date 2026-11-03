@@ -1,0 +1,30 @@
+# Simulation baseline; positions in world meters, yaw in degrees.
+robot: cf231
+world_frame: world
+takeoff_height: 0.5
+landing_height: 0.04
+max_speed: 0.2
+max_acceleration: 0.3
+position_tolerance: 0.08
+settle_time: 0.5
+hover_time: 1.0
+command_timeout: 1.0
+pose_timeout: 1.0
+startup_timeout: 15.0
+segment_timeout: 20.0
+mission_timeout: 120.0
+min_duration: 2.0
+geofence:
+  x: [-2.0, 2.0]
+  y: [-2.0, 2.0]
+  z: [-0.1, 1.5]
+waypoints:
+  - name: baseline_forward
+    position: [0.3, 0.0, 0.5]
+    yaw_deg: 0.0
+  - name: baseline_side
+    position: [0.3, 0.3, 0.5]
+    yaw_deg: 0.0
+  - name: return_home
+    position: [0.0, 0.0, 0.5]
+    yaw_deg: 0.0

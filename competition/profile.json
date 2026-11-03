@@ -1,0 +1,60 @@
+{
+  "schema": "competition_front_vision_flow_v2",
+  "target": {
+    "airframe": "Crazyflie 2.1+",
+    "deck": "AI deck + Flow deck",
+    "camera_direction": "front",
+    "image_format": "grayscale",
+    "hardware_available": false
+  },
+  "prohibited": {
+    "ground_pc_flight_control": true,
+    "provided_map_control": true,
+    "simulator_truth_control": true
+  },
+  "sensor_assistance": {
+    "flow_deck": true,
+    "mode": "bounded_flow_assistance_and_ToF_mission_verification",
+    "imu_usage": "flow_rotation_and_ToF_tilt_compensation"
+  },
+  "competition": {
+    "mission_sign": "marker",
+    "arrow_instructions": false,
+    "team_total_seconds": 900,
+    "official_marker_dictionary": null,
+    "official_marker_size_m": null,
+    "official_gate_dimensions_m": null,
+    "stage_transition_marker_ids": null,
+    "basic_imu_assistance_approved": null,
+    "barometer_assistance_approved": null
+  },
+  "development_preview": {
+    "route_marker_size_m": 0.6,
+    "route_marker_size_status": "editable_development_setting_not_official_rule",
+    "camera_width": 320,
+    "camera_height": 320,
+    "camera_fps": 20,
+    "dictionary": "DICT_4X4_50",
+    "lighting": "bright_fixed",
+    "static_camera_only": true,
+    "flight_commands": false,
+    "parameter_status": "development_assumptions_not_official_dimensions"
+  },
+  "onboard": {
+    "perception_target": "AI_deck_GAP8",
+    "flight_control_target": "Crazyflie_STM32",
+    "gap8_firmware": null,
+    "stm32_firmware": null,
+    "camera_calibration": null,
+    "vision_localizer": null,
+    "vision_landing_verifier": null,
+    "hardware_validation_report": null
+  },
+  "landing_policy": {
+    "reference": "existing_flag_and_downward_ToF",
+    "allow_additional_markers": false,
+    "descent_trigger": "relative_speed_matched",
+    "completion": "ToF_deck_entry_near_surface_and_simulation_contact",
+    "on_unobservable": "hold_except_brief_final_descent"
+  }
+}

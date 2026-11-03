@@ -1,0 +1,51 @@
+Flow Deck 코드 및 센서 화면 안내 (2026-11-03)
+경로는 저장소 루트 기준.
+
+1. 설정
+competition/profile.json
+  sensor_assistance.flow_deck=true로 전체 미션에서 활성화.
+
+2. 센서 생성
+scripts/runtime/mission_world.py : add_flow_deck()
+  하방 카메라 128×128, 20 Hz / 거리 30 Hz / IMU 100 Hz.
+  거리 센서는 gpu_lidar로 모의하며 3개 빔 중 중앙 빔을 읽음.
+
+3. ROS 연결 및 실행
+scripts/runtime/flight.py : bridge_config(), main()
+  Gazebo: /vision_trial/flow/image, /vision_trial/flow/camera_info,
+          /vision_trial/flow/range, /vision_trial/flow/imu
+  ROS: /vision_trial_<실행ID>/flow/ 아래에 같은 이름으로 연결.
+  정확한 토픽은 실행 결과의 bridge.yaml에 기록.
+
+4. Flow Deck 계산
+ros2_ws/src/dynamic_drone/dynamic_drone/control/flow_deck.py : FlowDeckAssist
+  configure(): 카메라 K 설정.
+  update_range(): 거리 수신 및 0.02≤d<2 m 유효성 검사.
+  update_attitude(): IMU quaternion을 회전행렬로 변환.
+  surface(): 거리·IMU 정합(75 ms 이내), 기울기 보정.
+  update_image(): 특징점→LK 광류→왕복 검증→회전 보정→속도 추정.
+  apply(): 정지 수평 보정·탐색 높이 유지·착지 감속.
+  range_telemetry(), telemetry(): 측정·보정 상태 반환.
+
+5. 미션 확인
+ros2_ws/src/dynamic_drone/dynamic_drone/control/mission.py
+  verify_ring_tof(): 하단 거리 감소 후 지면 회복으로 링 통과 확인.
+  update_truck_tof(), confirm_truck_contact(): 적재함 진입·근접·접촉 확인.
+
+6. 센서 화면
+scripts/runtime/flow_sensor_view.py : render_flow_panel()
+  하방 영상, 거리(m/mm), 기체 속도(전방/좌측/상방), IMU 자세,
+  센서 갱신 상태 및 링·트럭 ToF 상태 표시. 제어 입력을 만들지 않음.
+  LIVE=최근 입력, STALE=지연/중단, WAITING=대기, INVALID=무효.
+  유효하지 않은 속도·자세는 --로 표시하며 오래된 영상에는 STALE 표시.
+
+7. 저장소 루트에서 실행
+bash scripts/run_all_windows.sh --front-mission-flight --seed 100002 --domain 207
+  Gazebo, VISION FLIGHT, DEPTH ESTIMATE, FLOW DECK 창이 열림.
+  --headless는 창을 숨김. --stop-after-stage1은 1단계 완료 후 종료.
+  Q/Esc, 센서 창 닫기 또는 터미널 Ctrl+C로 종료.
+
+하방 영상은 광류 모의용이며 실물 Flow Deck 영상 출력이 아님.
+ToF는 센서에서 표면까지 거리이며 절대 고도가 아님.
+전방 DEPTH ESTIMATE는 별도 학습 모델의 추론 결과.
+Git 정리 과정에서는 시뮬레이션·테스트를 새로 실행하지 않음.
